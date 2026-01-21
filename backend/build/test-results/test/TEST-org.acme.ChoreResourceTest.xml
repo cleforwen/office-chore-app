@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.acme.ChoreResourceTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-01-21T06:26:42" hostname="cleforwen.local" time="0.771">
+  <properties/>
+  <testcase name="testCreateChore()" classname="org.acme.ChoreResourceTest" time="0.726"/>
+  <testcase name="testCreateChoreWithMember()" classname="org.acme.ChoreResourceTest" time="0.045"/>
+  <system-out><![CDATA[2026-01-21 14:26:41,207 WARN  [io.qua.dat.dep.dev.DevServicesDatasourceProcessor] (build-20) Unable to start Dev Services for default datasource as this datasource type (sqlite) does not support Dev Services
+?[35m[Hibernate]?[0m 
+    ?[34mdrop?[0m ?[34mtable?[0m ?[34mif?[0m ?[34mexists?[0m Chore
+?[35m[Hibernate]?[0m 
+    ?[34mdrop?[0m ?[34mtable?[0m ?[34mif?[0m ?[34mexists?[0m TeamMember
+?[35m[Hibernate]?[0m 
+    ?[34mcreate?[0m ?[34mtable?[0m Chore (
+        dueDate ?[34mdate?[0m,
+        isRecurring ?[34mboolean?[0m ?[34mnot?[0m ?[34mnull?[0m,
+        assignedTo_id ?[34mbigint?[0m,
+        id ?[34minteger?[0m,
+        description ?[34mvarchar?[0m(255),
+        recurrenceFrequency ?[34mvarchar?[0m(255),
+        title ?[34mvarchar?[0m(255),
+        ?[34mprimary?[0m ?[34mkey?[0m (id)
+    )
+?[35m[Hibernate]?[0m 
+    ?[34mcreate?[0m ?[34mtable?[0m TeamMember (
+        id ?[34minteger?[0m,
+        name ?[34mvarchar?[0m(255),
+        ?[34mprimary?[0m ?[34mkey?[0m (id)
+    )
+2026-01-21 14:26:42,847 INFO  [io.quarkus] (Test worker) office-chore-backend 1.0.0-SNAPSHOT on JVM (powered by Quarkus 3.15.1) started in 2.209s. Listening on: http://localhost:8081
+2026-01-21 14:26:42,847 INFO  [io.quarkus] (Test worker) Profile test activated. 
+2026-01-21 14:26:42,847 INFO  [io.quarkus] (Test worker) Installed features: [agroal, cdi, hibernate-orm, hibernate-orm-panache, jdbc-sqlite, narayana-jta, rest, rest-jackson, smallrye-context-propagation, vertx]
+?[35m[Hibernate]?[0m 
+    ?[34minsert?[0m 
+    ?[34minto?[0m
+        Chore
+        (assignedTo_id, description, dueDate, isRecurring, recurrenceFrequency, title) 
+    ?[34mvalues?[0m
+        (?, ?, ?, ?, ?, ?)
+2026-01-21 14:26:43,366 TRACE [org.hib.orm.jdb.bind] (executor-thread-1) binding parameter (1:BIGINT) <- [null]
+2026-01-21 14:26:43,366 TRACE [org.hib.orm.jdb.bind] (executor-thread-1) binding parameter (2:VARCHAR) <- [Testing persistence]
+2026-01-21 14:26:43,366 TRACE [org.hib.orm.jdb.bind] (executor-thread-1) binding parameter (3:DATE) <- [2026-01-21]
+2026-01-21 14:26:43,367 TRACE [org.hib.orm.jdb.bind] (executor-thread-1) binding parameter (4:BOOLEAN) <- [false]
+2026-01-21 14:26:43,367 TRACE [org.hib.orm.jdb.bind] (executor-thread-1) binding parameter (5:VARCHAR) <- [null]
+2026-01-21 14:26:43,367 TRACE [org.hib.orm.jdb.bind] (executor-thread-1) binding parameter (6:VARCHAR) <- [Test Chore]
+?[35m[Hibernate]?[0m 
+    ?[34mselect?[0m
+        last_insert_rowid()
+?[35m[Hibernate]?[0m 
+    ?[34minsert?[0m 
+    ?[34minto?[0m
+        TeamMember
+        (name) 
+    ?[34mvalues?[0m
+        (?)
+2026-01-21 14:26:43,588 TRACE [org.hib.orm.jdb.bind] (executor-thread-1) binding parameter (1:VARCHAR) <- [Test User]
+?[35m[Hibernate]?[0m 
+    ?[34mselect?[0m
+        last_insert_rowid()
+?[35m[Hibernate]?[0m 
+    ?[34mselect?[0m
+        tm1_0.id,
+        tm1_0.name 
+    ?[34mfrom?[0m
+        TeamMember tm1_0 
+    ?[34mwhere?[0m
+        tm1_0.id=?
+2026-01-21 14:26:43,612 TRACE [org.hib.orm.jdb.bind] (executor-thread-1) binding parameter (1:BIGINT) <- [1]
+?[35m[Hibernate]?[0m 
+    ?[34minsert?[0m 
+    ?[34minto?[0m
+        Chore
+        (assignedTo_id, description, dueDate, isRecurring, recurrenceFrequency, title) 
+    ?[34mvalues?[0m
+        (?, ?, ?, ?, ?, ?)
+2026-01-21 14:26:43,616 TRACE [org.hib.orm.jdb.bind] (executor-thread-1) binding parameter (1:BIGINT) <- [1]
+2026-01-21 14:26:43,616 TRACE [org.hib.orm.jdb.bind] (executor-thread-1) binding parameter (2:VARCHAR) <- [null]
+2026-01-21 14:26:43,616 TRACE [org.hib.orm.jdb.bind] (executor-thread-1) binding parameter (3:DATE) <- [2024-01-21]
+2026-01-21 14:26:43,617 TRACE [org.hib.orm.jdb.bind] (executor-thread-1) binding parameter (4:BOOLEAN) <- [false]
+2026-01-21 14:26:43,617 TRACE [org.hib.orm.jdb.bind] (executor-thread-1) binding parameter (5:VARCHAR) <- [null]
+2026-01-21 14:26:43,617 TRACE [org.hib.orm.jdb.bind] (executor-thread-1) binding parameter (6:VARCHAR) <- [Test Chore]
+?[35m[Hibernate]?[0m 
+    ?[34mselect?[0m
+        last_insert_rowid()
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

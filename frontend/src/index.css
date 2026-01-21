@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-slate-50 text-slate-900 font-sans antialiased;
+  }
+}
+
+/* Custom Calendar Styles overriding react-big-calendar defaults */
+.rbc-calendar {
+  @apply font-sans text-sm;
+}
+
+.rbc-header {
+  @apply py-3 font-semibold text-slate-600 border-none bg-slate-50 uppercase text-xs tracking-wider;
+}
+
+.rbc-month-view {
+  @apply border-slate-200 rounded-xl overflow-hidden bg-white shadow-sm;
+}
+
+.rbc-day-bg {
+  @apply border-slate-100;
+}
+
+.rbc-off-range-bg {
+  @apply bg-slate-50;
+}
+
+.rbc-event {
+  @apply rounded-md shadow-sm border-0;
+}
+
+.rbc-current-time-indicator {
+  @apply bg-indigo-500;
+}
+
+.rbc-today {
+  @apply bg-indigo-50/30;
+}
+
+.rbc-toolbar button {
+  @apply text-slate-600 border-slate-200 hover:bg-slate-50 hover:text-slate-900 px-3 py-1.5 transition-colors rounded-lg shadow-sm;
+}
+
+.rbc-toolbar button.rbc-active {
+  @apply bg-indigo-600 text-white border-transparent hover:bg-indigo-700 shadow-md;
+}
+
+.rbc-toolbar-label {
+  @apply font-bold text-lg text-slate-800;
+}
