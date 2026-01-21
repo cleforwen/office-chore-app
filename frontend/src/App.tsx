@@ -2,15 +2,20 @@ import { useState } from 'react'
 import CalendarView from './components/CalendarView'
 import TeamManager from './components/TeamManager'
 
-function App() {
+export default function App() {
   const [view, setView] = useState('calendar')
 
-  const NavButton = ({ id, label }) => (
+  interface NavButtonProps {
+    id: string;
+    label: string;
+  }
+
+  const NavButton = ({ id, label }: NavButtonProps) => (
     <button
       onClick={() => setView(id)}
       className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${view === id
-          ? 'bg-indigo-600 text-white shadow-md shadow-indigo-200'
-          : 'text-slate-600 hover:bg-slate-100'
+        ? 'bg-indigo-600 text-white shadow-md shadow-indigo-200'
+        : 'text-slate-600 hover:bg-slate-100'
         }`}
     >
       {label}
@@ -48,5 +53,3 @@ function App() {
     </div>
   )
 }
-
-export default App

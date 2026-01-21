@@ -1,12 +1,10 @@
 import { useState, useEffect } from 'react'
-import { Calendar, dateFnsLocalizer } from 'react-big-calendar'
-import format from 'date-fns/format'
-import parse from 'date-fns/parse'
-import startOfWeek from 'date-fns/startOfWeek'
-import getDay from 'date-fns/getDay'
-import enUS from 'date-fns/locale/en-US'
+import { Calendar, dateFnsLocalizer, Event } from 'react-big-calendar'
+import { format, parse, startOfWeek, getDay } from 'date-fns'
+import { enUS } from 'date-fns/locale'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 import ChoreModal from './ChoreModal'
+import { Chore } from '../types'
 
 const locales = {
     'en-US': enUS,
@@ -20,19 +18,22 @@ const localizer = dateFnsLocalizer({
     locales,
 })
 
+interface ChoreEvent extends Event {
+    resource: Chore;
+}
+
 export default function CalendarView() {
-    const [events, setEvents] = useState([])
+    const [events, setEvents] = useState<ChoreEvent[]>([])
     const [modalOpen, setModalOpen] = useState(false)
-    const [selectedSlot, setSelectedSlot] = useState(null)
-    const [selectedEvent, setSelectedEvent] = useState(null)
+    const [selectedSlot, setSelectedSlot] = useState<{ start: Date } | undefined>(undefined)
+    const [selectedEvent, setSelectedEvent] = useState<Chore | null | undefined>(undefined)
 
     const fetchChores = async () => {
         try {
             const res = await fetch('http://localhost:8080/api/chores')
             if (res.ok) {
-                const data = await res.json()
-                const mappedEvents = data.map(chore => ({
-                    id: chore.id,
+                const data: Chore[] = await res.json()
+                const mappedEvents: ChoreEvent[] = data.map(chore => ({
                     title: `${chore.title} (${chore.assignedTo?.name || 'Unassigned'})`,
                     start: new Date(chore.dueDate),
                     end: new Date(chore.dueDate),
@@ -50,15 +51,15 @@ export default function CalendarView() {
         fetchChores()
     }, [])
 
-    const handleSelectSlot = (slotInfo) => {
+    const handleSelectSlot = (slotInfo: { start: Date }) => {
         setSelectedSlot(slotInfo)
         setSelectedEvent(null)
         setModalOpen(true)
     }
 
-    const handleSelectEvent = (event) => {
+    const handleSelectEvent = (event: ChoreEvent) => {
         setSelectedEvent(event.resource)
-        setSelectedSlot(null)
+        setSelectedSlot(undefined)
         setModalOpen(true)
     }
 

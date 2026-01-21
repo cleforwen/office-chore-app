@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, FormEvent } from 'react'
+import { TeamMember } from '../types'
 
 export default function TeamManager() {
-    const [members, setMembers] = useState([])
+    const [members, setMembers] = useState<TeamMember[]>([])
     const [name, setName] = useState('')
 
     const fetchMembers = () => {
@@ -15,7 +16,7 @@ export default function TeamManager() {
         fetchMembers()
     }, [])
 
-    const addMember = async (e) => {
+    const addMember = async (e: FormEvent) => {
         e.preventDefault()
         if (!name.trim()) return
         await fetch('http://localhost:8080/api/members', {
@@ -27,13 +28,13 @@ export default function TeamManager() {
         fetchMembers()
     }
 
-    const removeMember = async (id) => {
+    const removeMember = async (id: number) => {
         if (!confirm("Remove this member? This cannot be undone.")) return
         await fetch(`http://localhost:8080/api/members/${id}`, { method: 'DELETE' })
         fetchMembers()
     }
 
-    const getInitials = (n) => n.split(' ').map(i => i[0]).join('').substring(0, 2).toUpperCase()
+    const getInitials = (n: string) => n.split(' ').map(i => i[0]).join('').substring(0, 2).toUpperCase()
 
     return (
         <div className="max-w-4xl mx-auto">

@@ -1,11 +1,19 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, FormEvent } from 'react'
+import { Chore, TeamMember } from '../types'
 
+interface ChoreModalProps {
+    isOpen: boolean;
+    onClose: () => void;
+    refresh: () => void;
+    initialDate?: Date | undefined;
+    existingChore?: Chore | null | undefined;
+}
 
-export default function ChoreModal({ isOpen, onClose, refresh, initialDate, existingChore }) {
+export default function ChoreModal({ isOpen, onClose, refresh, initialDate, existingChore }: ChoreModalProps) {
     const [title, setTitle] = useState('')
     const [memberId, setMemberId] = useState('')
     const [date, setDate] = useState('')
-    const [members, setMembers] = useState([])
+    const [members, setMembers] = useState<TeamMember[]>([])
     const [isRecurring, setIsRecurring] = useState(false)
     const [recurrence, setRecurrence] = useState('WEEKLY')
     const [isLoading, setIsLoading] = useState(false)
@@ -18,7 +26,8 @@ export default function ChoreModal({ isOpen, onClose, refresh, initialDate, exis
 
         if (existingChore) {
             setTitle(existingChore.title)
-            setMemberId(existingChore.assignedTo?.id || '')
+            // Handle null/undefined assignedTo safely
+            setMemberId(existingChore.assignedTo ? existingChore.assignedTo.id.toString() : '')
             setDate(existingChore.dueDate)
             setIsRecurring(existingChore.isRecurring)
             setRecurrence(existingChore.recurrenceFrequency || 'WEEKLY')
@@ -27,7 +36,7 @@ export default function ChoreModal({ isOpen, onClose, refresh, initialDate, exis
         }
     }, [existingChore, initialDate])
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: FormEvent) => {
         e.preventDefault()
         setIsLoading(true)
         const payload = {
