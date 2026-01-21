@@ -4,51 +4,61 @@
 
 @layer base {
   body {
-    @apply bg-slate-50 text-slate-900 font-sans antialiased;
+    @apply bg-zinc-100 text-zinc-900 font-sans antialiased text-sm;
   }
 }
 
 /* Custom Calendar Styles overriding react-big-calendar defaults */
 .rbc-calendar {
-  @apply font-sans text-sm;
+  @apply font-sans text-xs text-zinc-600;
 }
 
 .rbc-header {
-  @apply py-3 font-semibold text-slate-600 border-none bg-slate-50 uppercase text-xs tracking-wider;
+  @apply py-3 font-medium text-zinc-500 border-none bg-zinc-50 uppercase text-[10px] tracking-widest;
 }
 
 .rbc-month-view {
-  @apply border-slate-200 rounded-xl overflow-hidden bg-white shadow-sm;
+  @apply border-zinc-200 rounded-2xl overflow-hidden bg-white shadow-xl ring-1 ring-zinc-900/5 transition-all duration-300;
 }
 
 .rbc-day-bg {
-  @apply border-slate-100;
+  @apply border-zinc-100;
 }
 
 .rbc-off-range-bg {
-  @apply bg-slate-50;
+  @apply bg-zinc-50/50;
 }
 
 .rbc-event {
-  @apply rounded-md shadow-sm border-0;
+  @apply rounded-lg shadow-sm border-0 bg-zinc-800 text-white hover:bg-zinc-700 transition-colors duration-200;
 }
 
 .rbc-current-time-indicator {
-  @apply bg-indigo-500;
+  @apply bg-zinc-500;
 }
 
 .rbc-today {
-  @apply bg-indigo-50/30;
+  @apply bg-zinc-50;
 }
 
 .rbc-toolbar button {
-  @apply text-slate-600 border-slate-200 hover:bg-slate-50 hover:text-slate-900 px-3 py-1.5 transition-colors rounded-lg shadow-sm;
+  @apply text-zinc-600 border-zinc-200 hover:bg-zinc-100 hover:text-zinc-900 px-3 py-1.5 transition-all duration-200 rounded-lg shadow-sm text-xs font-medium;
 }
 
 .rbc-toolbar button.rbc-active {
-  @apply bg-indigo-600 text-white border-transparent hover:bg-indigo-700 shadow-md;
+  @apply bg-zinc-800 text-white border-transparent hover:bg-zinc-900 shadow-lg ring-2 ring-zinc-500/20 translate-y-[-1px];
 }
 
 .rbc-toolbar-label {
-  @apply font-bold text-lg text-slate-800;
+  @apply font-bold text-base text-zinc-800 tracking-tight;
+}
+
+/* Base Modal & Card Styles */
+.card-shadow {
+  box-shadow: 0 8px 30px rgb(0 0 0 / 4%);
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-shadow:hover {
+  box-shadow: 0 8px 30px rgb(0 0 0 / 8%);
 }
