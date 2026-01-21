@@ -1,4 +1,4 @@
-package org.acme;
+package com.cleforwen;
 
 import java.util.List;
 import jakarta.transaction.Transactional;
@@ -10,9 +10,12 @@ import jakarta.ws.rs.core.MediaType;
 @Consumes(MediaType.APPLICATION_JSON)
 public class ChoreResource {
 
+    @jakarta.inject.Inject
+    ChoreService choreService;
+
     @GET
     public List<Chore> list() {
-        return Chore.listAll();
+        return choreService.getAllChoresWithRecurrences();
     }
 
     @POST

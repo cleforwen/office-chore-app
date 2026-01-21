@@ -1,4 +1,4 @@
-package org.acme;
+package com.cleforwen;
 
 import java.util.List;
 import jakarta.transaction.Transactional;
