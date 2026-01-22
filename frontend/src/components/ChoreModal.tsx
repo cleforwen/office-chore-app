@@ -83,22 +83,22 @@ export default function ChoreModal({ isOpen, onClose, refresh, initialDate, exis
     if (!isOpen) return null
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-zinc-900/60 backdrop-blur-sm animate-fade-in">
-            <div className="bg-white rounded-2xl shadow-2xl w-full max-w-sm overflow-hidden transform transition-all ring-1 ring-black/5">
-                <div className="px-5 py-4 border-b border-zinc-100 bg-zinc-50/50 flex justify-between items-center">
-                    <h3 className="text-base font-bold text-zinc-900 tracking-tight">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-zinc-900/60 dark:bg-black/80 backdrop-blur-sm animate-fade-in">
+            <div className="bg-white dark:bg-zinc-900 rounded-2xl shadow-2xl w-full max-w-sm overflow-hidden transform transition-all ring-1 ring-black/5 dark:ring-white/10">
+                <div className="px-5 py-4 border-b border-zinc-100 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/50 flex justify-between items-center">
+                    <h3 className="text-base font-bold text-zinc-900 dark:text-zinc-100 tracking-tight">
                         {existingChore ? 'Edit Chore' : 'New Chore'}
                     </h3>
-                    <button onClick={onClose} className="text-zinc-400 hover:text-zinc-600 transition-colors">
+                    <button onClick={onClose} className="text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300 transition-colors">
                         <svg className="w-5 h-5" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" /></svg>
                     </button>
                 </div>
 
                 <form onSubmit={handleSubmit} className="p-5 space-y-4">
                     <div>
-                        <label className="block text-xs font-semibold text-zinc-700 mb-1.5 uppercase tracking-wide">Chore Title</label>
+                        <label className="block text-xs font-semibold text-zinc-700 dark:text-zinc-400 mb-1.5 uppercase tracking-wide">Chore Title</label>
                         <input
-                            className="w-full border-zinc-200 bg-zinc-50/50 rounded-lg shadow-sm focus:border-zinc-500 focus:ring-zinc-500 text-sm active:bg-white transition-colors"
+                            className="w-full border-zinc-200 dark:border-zinc-700 bg-zinc-50/50 dark:bg-zinc-800/50 dark:text-white rounded-lg shadow-sm focus:border-zinc-500 focus:ring-zinc-500 text-sm active:bg-white dark:active:bg-zinc-800 transition-colors"
                             placeholder="e.g. Empty Dishwasher"
                             value={title}
                             onChange={e => setTitle(e.target.value)}
@@ -108,9 +108,9 @@ export default function ChoreModal({ isOpen, onClose, refresh, initialDate, exis
 
                     <div className="grid grid-cols-2 gap-4">
                         <div>
-                            <label className="block text-xs font-semibold text-zinc-700 mb-1.5 uppercase tracking-wide">Assign To</label>
+                            <label className="block text-xs font-semibold text-zinc-700 dark:text-zinc-400 mb-1.5 uppercase tracking-wide">Assign To</label>
                             <select
-                                className="w-full border-zinc-200 bg-zinc-50/50 rounded-lg shadow-sm focus:border-zinc-500 focus:ring-zinc-500 text-sm"
+                                className="w-full border-zinc-200 dark:border-zinc-700 bg-zinc-50/50 dark:bg-zinc-800/50 dark:text-white rounded-lg shadow-sm focus:border-zinc-500 focus:ring-zinc-500 text-sm"
                                 value={memberId}
                                 onChange={e => setMemberId(e.target.value)}
                             >
@@ -121,10 +121,10 @@ export default function ChoreModal({ isOpen, onClose, refresh, initialDate, exis
                             </select>
                         </div>
                         <div>
-                            <label className="block text-xs font-semibold text-zinc-700 mb-1.5 uppercase tracking-wide">Due Date</label>
+                            <label className="block text-xs font-semibold text-zinc-700 dark:text-zinc-400 mb-1.5 uppercase tracking-wide">Due Date</label>
                             <input
                                 type="date"
-                                className="w-full border-zinc-200 bg-zinc-50/50 rounded-lg shadow-sm focus:border-zinc-500 focus:ring-zinc-500 text-sm"
+                                className="w-full border-zinc-200 dark:border-zinc-700 bg-zinc-50/50 dark:bg-zinc-800/50 dark:text-white rounded-lg shadow-sm focus:border-zinc-500 focus:ring-zinc-500 text-sm"
                                 value={date}
                                 onChange={e => setDate(e.target.value)}
                                 required
@@ -132,22 +132,22 @@ export default function ChoreModal({ isOpen, onClose, refresh, initialDate, exis
                         </div>
                     </div>
 
-                    <div className="bg-zinc-50 p-4 rounded-xl border border-zinc-100">
+                    <div className="bg-zinc-50 dark:bg-zinc-800/30 p-4 rounded-xl border border-zinc-100 dark:border-zinc-800">
                         <div className="flex items-center space-x-2.5">
                             <input
                                 type="checkbox"
                                 id="recurring"
-                                className="rounded border-zinc-300 text-zinc-900 focus:ring-zinc-500 w-4 h-4"
+                                className="rounded border-zinc-300 dark:border-zinc-600 text-zinc-900 dark:text-zinc-100 focus:ring-zinc-500 w-4 h-4"
                                 checked={isRecurring}
                                 onChange={e => setIsRecurring(e.target.checked)}
                             />
-                            <label htmlFor="recurring" className="text-sm font-medium text-zinc-700">Repeat this chore?</label>
+                            <label htmlFor="recurring" className="text-sm font-medium text-zinc-700 dark:text-zinc-300">Repeat this chore?</label>
                         </div>
 
                         {isRecurring && (
                             <div className="mt-3 pl-6">
                                 <select
-                                    className="w-full border-zinc-200 bg-white rounded-lg shadow-sm focus:border-zinc-500 focus:ring-zinc-500 text-sm py-1.5"
+                                    className="w-full border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 dark:text-white rounded-lg shadow-sm focus:border-zinc-500 focus:ring-zinc-500 text-sm py-1.5"
                                     value={recurrence}
                                     onChange={e => setRecurrence(e.target.value)}
                                 >
@@ -159,13 +159,13 @@ export default function ChoreModal({ isOpen, onClose, refresh, initialDate, exis
                         )}
                     </div>
 
-                    <div className="flex justify-end gap-3 pt-3 border-t border-zinc-100 mt-2">
+                    <div className="flex justify-end gap-3 pt-3 border-t border-zinc-100 dark:border-zinc-800 mt-2">
                         {existingChore && (
                             <button
                                 type="button"
                                 onClick={handleDelete}
                                 disabled={isLoading}
-                                className="px-4 py-2 text-xs font-bold text-red-600 bg-red-50 hover:bg-red-100 rounded-lg transition-colors mr-auto"
+                                className="px-4 py-2 text-xs font-bold text-red-600 hover:text-red-500 dark:text-red-400 bg-red-50 dark:bg-red-900/10 hover:bg-red-100 dark:hover:bg-red-900/20 rounded-lg transition-colors mr-auto"
                             >
                                 DELETE
                             </button>
@@ -174,14 +174,14 @@ export default function ChoreModal({ isOpen, onClose, refresh, initialDate, exis
                             type="button"
                             onClick={onClose}
                             disabled={isLoading}
-                            className="px-4 py-2 text-xs font-bold text-zinc-600 bg-white border border-zinc-200 hover:bg-zinc-50 rounded-lg transition-colors shadow-sm"
+                            className="px-4 py-2 text-xs font-bold text-zinc-600 dark:text-zinc-300 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 hover:bg-zinc-50 dark:hover:bg-zinc-700 rounded-lg transition-colors shadow-sm"
                         >
                             CANCEL
                         </button>
                         <button
                             type="submit"
                             disabled={isLoading}
-                            className="px-6 py-2 text-xs font-bold text-white bg-zinc-900 hover:bg-zinc-800 rounded-lg shadow-lg shadow-zinc-200 transition-all active:scale-95 disabled:opacity-50 disabled:active:scale-100"
+                            className="px-6 py-2 text-xs font-bold text-white dark:text-zinc-900 bg-zinc-900 dark:bg-zinc-100 hover:bg-zinc-800 dark:hover:bg-zinc-200 rounded-lg shadow-lg shadow-zinc-200 dark:shadow-none transition-all active:scale-95 disabled:opacity-50 disabled:active:scale-100"
                         >
                             {isLoading ? 'SAVING...' : 'SAVE CHORE'}
                         </button>
